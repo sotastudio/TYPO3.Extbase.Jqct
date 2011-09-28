@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the jqct extension in the BACKEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pi1_title">jQuery Content Tools</label>
+			<label index="pi1_plus_wiz_description">CE-Tools based on jQuery UI</label>
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Settings</label>
+			<label index="flexforms_settings.renderingMethod">Rendering Method</label>
+			<label index="flexforms_settings.renderingMethod.1">Tab Element</label>
+			<label index="flexforms_settings.renderingMethod.2">Accordion Element</label>
+			<label index="flexforms_settings.records">Records</label>
+			<label index="flexforms_settings.headerOverride">Override Element Headline</label>
+			<label index="flexforms_settings.elementMerging">Merge Content Elements</label>
+			<label index="flexforms_settings.ajax">Use Ajax</label>
+			<label index="flexforms_settings.showfirst">Display # first</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="pi1_title">jQuery Content Tools</label>
+			<label index="pi1_plus_wiz_description">CE-Tools auf Basis von jQuery UI</label>
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Einstellungen</label>
+			<label index="flexforms_settings.renderingMethod">Rendering-Methode</label>
+			<label index="flexforms_settings.renderingMethod.1">Tab-Element</label>
+			<label index="flexforms_settings.renderingMethod.2">Accordion-Element</label>
+			<label index="flexforms_settings.records">Inhaltselemente</label>
+			<label index="flexforms_settings.headerOverride">Element-Header überschreiben</label>
+			<label index="flexforms_settings.elementMerging">Inhaltselemente zu einem Element verschmelzen</label>
+			<label index="flexforms_settings.ajax">Ajax verwenden</label>
+			<label index="flexforms_settings.showfirst">Zeige # zuerst</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,36 @@
+plugin.tx_jqct {
+	view {
+		templateRootPath = {$plugin.tx_jqct.view.templateRootPath}
+		partialRootPath = {$plugin.tx_jqct.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_jqct.view.layoutRootPath}
+	}
+	settings {
+		pathCss = 1
+		pathJsLibJquery = 2
+		pathJsLibJqueryUi = 3
+	}
+	persistence {
+		classes {
+			Tx_Jqct_Domain_Model_Content {
+				mapping {
+					tableName = tt_content
+					columns {
+						uid.mapOnProperty = uid
+						header.mapOnProperty = header
+						content.mapOnProperty = content
+					}
+				}
+			}
+			Tx_Jqct_Domain_Repository_ContentRepository {
+				mapping {
+					tableName = tt_content
+					columns {
+						uid.mapOnProperty = uid
+						header.mapOnProperty = header
+						content.mapOnProperty = content
+					}
+				}
+			}
+		}
+	}
+}

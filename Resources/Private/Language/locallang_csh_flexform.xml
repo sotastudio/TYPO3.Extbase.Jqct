@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>CSH for flexforms</description>
+		<type>CSH</type>
+		<fileId>EXT:jqct/locallang_csh_flexforms.xml</fileId>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="settings.renderingMethod">Select a Frontend Rendering Method for this Content Element</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="settings.renderingMethod">Hier eine Rendering-Methode für das Frontend auswählen</label>
+		</languageKey>
+	</data>
+</T3locallang>
