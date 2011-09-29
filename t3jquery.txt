@@ -1,1 +1,1 @@
-components=jQuery,Core,Tabs
+components=jQuery,Core,Tabs,Accordion
