@@ -21,9 +21,11 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 	public function indexAction() {
 		//$recordObject = $this->objectManager->get('Tx_Jqct_Domain_Repository_RecordObjectStorage');
 		$accordion = $this->objectManager->get('Tx_Jqct_Domain_Model_Accordion');
+		$content = $accordion->content->getAll(); 
 		//$this->div->debug( $this->confMan );
 		//$this->div->debug( Tx_Extbase_Configuration_FrontendConfigurationManager::getPluginConfiguration() );
 		$this->view->assign('settings', $this->settings);
+		$this->view->assign('content', $content);
 	}
 	
 	protected function getRenderingMethod() {

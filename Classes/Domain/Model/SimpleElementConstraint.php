@@ -26,7 +26,7 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
 	 * 
 	 * @var Tx_Jqct_Domain_Model_Content
 	 */
-	protected $content;
+	public $content;
 
 	/**
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $conf
@@ -47,25 +47,39 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
 	
 	/**
 	 * Kinda constructor
-	 * Beeing executed right after __construct has access to injected Objects
+	 * Beeing executed right after __construct and has access to injected Objects
 	 */
 	public function initializeObject() {
-		$this->setUid($this->contentObject->data['uid']);
 		$this->contentObject = $this->configurationManager->getContentObject();
 		$this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings', 'jqct', 'pi1');
-		
-		//t3lib_utility_Debug::debug($this->content);
-		
-		//$this->recordObjectStorage->init($records);
-		
+		$this->setUid($this->contentObject->data['uid']);
+				
+		//t3lib_utility_Debug::debug($this->generateUid('prefix', 'suffix'));
+				
 		//$GLOBALS['TYPO3_DB']->debugOutput = TRUE;
 		//t3lib_utility_Debug::debug($this->content->countAll());
 		//echo '---' . $GLOBALS['TYPO3_DB']->debug_lastBuiltQuery . '---';
 		//print_r($res);
 	}
 
+	/**
+	 * Builds an unique id or unique label based on a given pre- and suffix
+	 * 
+	 * @param  string  $prefix: Prefix for building a label (e.g. for html elements)
+	 * @param  string  $suffix: Suffix for building a label (e.g. for html elements)
+	 * @return  mixed  The unique id (integer) or label (string) based on params
+	 */
+	function generateUid($prefix = '', $suffix = '', $divider = '-')
+	{
+		$uid = (( !empty($prefix) ) ? $prefix . $divider : '') 
+					 . $this->getUid() .
+					 (( !empty($suffix) ) ? $divider . $suffix : '');
+		return $uid;
+	}
+
+
 	final protected function setUid($uid) {
 		$this->uid = (int)$uid;
 	}
-
+	
 }
