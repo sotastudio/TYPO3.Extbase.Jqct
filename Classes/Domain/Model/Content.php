@@ -53,10 +53,10 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		$records = $this->getRecords();
 		$recordList = Tx_Extbase_Utility_Arrays::trimExplode(',', $records);
 		
-    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-    	'uid,header',
-    	'tt_content',
-    	'uid IN (' . $records .') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'uid,header',
+			'tt_content',
+			'uid IN (' . $records .') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid
 		);
 		
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -179,6 +179,12 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		return (strlen($this->records)) ? TRUE : FALSE;
 	}
 	
+	/**
+	 * Returns a Configuration Array for requesting Content Elements
+	 * 
+	 * @param string Uid(s) of the requested Content Element(s)
+	 * @return array Configuration Array
+	 */
 	final protected function getConfByUid($uid) {
 		return array(
 			'tables' => 'tt_content',
