@@ -16,16 +16,35 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 	/**
 	 * Show action for this controller. Initiates the frontend rendering of the Plugin.
 	 * 
+	 * @todo Work out how to handle a missing rendering method
 	 * @return void
 	 */
 	public function indexAction() {
-		//$recordObject = $this->objectManager->get('Tx_Jqct_Domain_Repository_RecordObjectStorage');
-		$accordion = $this->objectManager->get('Tx_Jqct_Domain_Model_Accordion');
-		$content = $accordion->content->getAll(); 
-		//$this->div->debug( $this->confMan );
-		//$this->div->debug( Tx_Extbase_Configuration_FrontendConfigurationManager::getPluginConfiguration() );
-		$this->view->assign('settings', $this->settings);
-		$this->view->assign('content', $content);
+			// Fetch choosen rendering method 
+		if ( $renderChoosen = $this->settings['renderingMethod'] ) {
+				// Try to get an object mathing the choosen rendering method
+			try {
+					// Build Model based on defined rendering
+				$renderObjName = 'Tx_Jqct_Domain_Model_' . $renderChoosen;
+				$renderObj = $this->objectManager->get($renderObjName);
+			} catch (Exception $e){
+				$this->addFlashMessage('renderingModel');
+			}
+			
+			if (is_object($renderObj)) {
+					// If everything went fine, just render the stuff
+				$content = $renderObj->content->getAll(); 
+				$tplObj = array(
+					'content' => $content
+				);
+				$this->view->assignMultiple($tplObj);
+			}
+			
+		} else {
+				// Here could apper some kind of error if no rendering method has been choosen
+				// But maybe the integrator or user doesn't want to have such a message in the frontend
+			//$this->addFlashMessage('rendering');
+		}
 	}
 	
 	protected function getRenderingMethod() {
