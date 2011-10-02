@@ -5,32 +5,16 @@ plugin.tx_jqct {
 		layoutRootPath = {$plugin.tx_jqct.view.layoutRootPath}
 	}
 	settings {
+		templates {
+			accordion = EXT:jqct/Resources/Private/Templates/ContentTools/accordion.html
+			tabs = EXT:jqct/Resources/Private/Templates/ContentTools/tabs.html
+		}
 		pathCss = 1
 		pathJsLibJquery = 2
 		pathJsLibJqueryUi = 3
 	}
 	persistence {
 		classes {
-			Tx_Jqct_Domain_Model_Content {
-				mapping {
-					tableName = tt_content
-					columns {
-						uid.mapOnProperty = uid
-						header.mapOnProperty = header
-						content.mapOnProperty = content
-					}
-				}
-			}
-			Tx_Jqct_Domain_Repository_ContentRepository {
-				mapping {
-					tableName = tt_content
-					columns {
-						uid.mapOnProperty = uid
-						header.mapOnProperty = header
-						content.mapOnProperty = content
-					}
-				}
-			}
 		}
 	}
 }

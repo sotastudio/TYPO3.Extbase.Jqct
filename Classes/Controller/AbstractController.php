@@ -22,6 +22,15 @@ abstract class Tx_Jqct_Controller_AbstractController extends Tx_Extbase_MVC_Cont
 	}
 	
 	/**
+	 * Returns the reference to a 'resource' in TypoScript.
+	 * 
+	 * @todo Check whether there is a better solution for this
+	 */
+	protected function getFileResource($file) {
+		return $GLOBALS['TSFE']->tmpl->getFileName($file);
+	}
+	
+	/**
 	 * Override getErrorFlashMessage to present
 	 * nice flash error messages.
 	 *

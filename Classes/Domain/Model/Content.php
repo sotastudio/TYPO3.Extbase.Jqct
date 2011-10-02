@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)
  */
 class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject {
 	
@@ -24,6 +24,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	protected $records;
 	
+	
 	public function __construct() {
 			// Gets the Configuration Manager - It's a
 		$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
@@ -37,7 +38,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 			return NULL;
 		}
 		
-		//t3lib_utility_Debug::debug($this->getAll());
+		//t3lib_utility_Debug::debug($this->request);
 		
 		//t3lib_utility_Debug::debug(get_class_methods(get_class($this->contentObject)));
 	}

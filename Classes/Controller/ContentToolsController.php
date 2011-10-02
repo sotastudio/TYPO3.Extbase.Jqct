@@ -1,8 +1,16 @@
 <?php
 /**
  * The ContentTools controller for the Jqct extension
+ * @todo Work out how to handle a missing rendering method
+ * @todo Cleaning up the code, e.g. outsoorcing the initialization of the Rendering Method
  */
 class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_AbstractController {
+
+	/**
+	 * @var tslib_cObj
+	 */
+	protected $contentObject;
+
 	
 	/**
 	 * Kinda construct
@@ -10,34 +18,36 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 	 * @return void
 	 */
 	public function initializeAction() {
-		
+		$this->contentObject = $this->configurationManager->getContentObject();
 	}	
 	
 	/**
 	 * Show action for this controller. Initiates the frontend rendering of the Plugin.
 	 * 
-	 * @todo Work out how to handle a missing rendering method
 	 * @return void
 	 */
 	public function indexAction() {
 			// Fetch choosen rendering method 
-		if ( $renderChoosen = $this->settings['renderingMethod'] ) {
+		if ( $renderChoosen = $this->getRenderingMethod() ) {
 				// Try to get an object mathing the choosen rendering method
 			try {
 					// Build Model based on defined rendering
-				$renderObjName = 'Tx_Jqct_Domain_Model_' . $renderChoosen;
+				$renderObjName = 'Tx_Jqct_Domain_Model_' . ucfirst($renderChoosen);
 				$renderObj = $this->objectManager->get($renderObjName);
 			} catch (Exception $e){
 				$this->addFlashMessage('renderingModel');
 			}
 			
 			if (is_object($renderObj)) {
+					// Set another Template, if neccesary (based on TS Setup)
+				if ($tpl = $this->settings['templates'][strtolower($renderChoosen)]) {
+					$this->view->setTemplatePathAndFilename( $this->getFileResource($tpl) );
+				}
 					// If everything went fine, just render the stuff
-				$content = $renderObj->content->getAll(); 
 				$tplObj = array(
-					'content' => $content
+					'content' => $renderObj->content->getAll()
 				);
-				$this->view->assignMultiple($tplObj);
+				$this->view->assignMultiple($tplObj);				
 			}
 			
 		} else {
@@ -47,14 +57,19 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 		}
 	}
 	
+	/**
+	 * Returns Rendering Method defined via Flexform or TS Setup
+	 * 
+	 * @return string Rendering Method
+	 */
 	protected function getRenderingMethod() {
 		return $this->settings['renderingMethod'];
-		 
 	}
 	
-	protected function setRenderingModel() {
-		//$accordion = $this->objectManager->get('Tx_Jqct_Domain_Model_Accordion');
-		//$tabs = $this->objectManager->get('Tx_Jqct_Domain_Model_Tabs');		
-	}
+	protected function getRenderingModel() {}
+	
+	protected function setRenderingModel() {}
+	
+	protected function setTemplate() {}
 	 	
 }
