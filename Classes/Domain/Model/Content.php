@@ -25,7 +25,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	protected $records;
 	
 	
-	public function __construct() {
+	public function initializeObject() {
 			// Gets the Configuration Manager - It's a
 		$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
 		$this->contentObject = $this->configurationManager->getContentObject();

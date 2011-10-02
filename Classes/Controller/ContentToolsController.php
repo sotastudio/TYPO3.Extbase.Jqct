@@ -47,7 +47,7 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 				$tplObj = array(
 					'content' => $renderObj->content->getAll()
 				);
-				$this->view->assignMultiple($tplObj);				
+				$this->view->assignMultiple($tplObj);
 			}
 			
 		} else {
