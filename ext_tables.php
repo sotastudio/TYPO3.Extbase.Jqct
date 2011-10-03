@@ -15,7 +15,6 @@ t3lib_extMgm::addLLrefForTCAdescr(
 	'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexform.xml'
 );
 
- 
 	// Frontend Plugin
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY, 
