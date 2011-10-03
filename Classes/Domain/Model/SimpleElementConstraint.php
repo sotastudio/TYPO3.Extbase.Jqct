@@ -5,6 +5,7 @@
  * @author Andy Hausmann <andy.hausmann@gmx.de>
  * @package TYPO3
  * @subpackage tx_jqct
+ * @todo Catch the other Flexform Settings and process them here: Element-Merging, Header-Overrides, selected Tab...
  */
 abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_DomainObject_AbstractValueObject {
 

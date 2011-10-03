@@ -5,6 +5,8 @@
  * @author Andy Hausmann <andy.hausmann@gmx.de>
  * @package TYPO3
  * @subpackage tx_jqct
+ * @todo Create Method to inject Stylesheets and Script info the Frontend Page: $this->response->addAdditionalHeaderData('<link rel="stylesheet" href="' . t3lib_extMgm::siteRelPath('extkey') . 'Resources/Public/Stylesheets/index.css" />');
+ * @todo I should take a look at http://wiki.typo3.org/wiki/Fluid
  */
 abstract class Tx_Jqct_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 

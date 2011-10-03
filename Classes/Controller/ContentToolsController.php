@@ -49,6 +49,7 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 				}
 					// If everything went fine, just render the stuff
 				$tplObj = array(
+                    'object' => &$renderObj,
 					'content' => $renderObj->content->getAll()
 				);
 				$this->view->assignMultiple($tplObj);

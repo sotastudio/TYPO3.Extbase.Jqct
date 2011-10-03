@@ -7,6 +7,7 @@
  * @package TYPO3
  * @subpackage tx_jqct
  * @property mixed content
+ * @todo Create setter to override Content Element Headers
  * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)
  */
 class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject {
