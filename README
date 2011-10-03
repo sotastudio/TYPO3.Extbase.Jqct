@@ -4,3 +4,8 @@ JQCT is being developed and maintained by Andy Hausmann <andy.hausmann@gmx.de>.
 Currently, this extension is in an early alpha state and unter heavy development.
 
 When it reaches a notable and functional state of development, it will be uploaded into TER.
+
+_TODO
+
+* Include Stylesheets and Scripts
+* Make use of ItemProcFunc in Flexforms to switch options for each Content Element Rendering-Type

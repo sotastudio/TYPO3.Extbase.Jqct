@@ -33,10 +33,7 @@ t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Co
 	// Add Static TypoScript
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'jQuery Content Tools');
 
-
 if (TYPO3_MODE === 'BE')	{
 		// Add Plugin to CE Wizard
-	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
-		t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $_EXTKEY . '_wizicon.php';
-
+	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] = t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $_EXTKEY . '_wizicon.php';
 }
