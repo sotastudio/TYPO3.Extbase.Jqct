@@ -1,7 +1,23 @@
-<f:if condition="{content}">
-	<h1>Accordion Content Elements</h1>
-</f:if>
-<f:for each="{content}" as="ce" key="key">
-	<h2>{ce.header}</h2>
-	<f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
-</f:for>
+<script type="text/javascript">
+    <![CDATA[
+    $(document).ready(function() {
+        $("#jqctAccordion-]]>{data.uid}<![CDATA[").accordion({
+            active : ]]>{settings.showfirst}<![CDATA[,
+            animated : 'slide',
+            autoHeight: true,
+            header : 'h3.header'
+        });
+    });
+    ]]>
+</script>
+
+<div id="jqctAccordion-{data.uid}">
+    <f:for each="{content}" as="ce" key="key">
+        <div id="jqctAccordionContent-{data.uid}-{key}">
+            <h3 class="header">{ce.header}</h3>
+            <div class="clearfix clearFix">
+                <f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
+            </div>
+        </div>
+    </f:for>
+</div>
