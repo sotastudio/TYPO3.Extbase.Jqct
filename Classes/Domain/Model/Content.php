@@ -1,5 +1,12 @@
 <?php
 /**
+ * Acts as a Repository for Content Elements
+ * This Model/Repository is being referenced and used by Content Element Rendering-Classes
+ *
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
+ * @property mixed content
  * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)
  */
 class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject {
@@ -30,7 +37,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
 		$this->contentObject = $this->configurationManager->getContentObject();
 		$this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings', 'jqct', 'pi1');
-		
+
 		$records =& $this->pluginConfiguration['records'];
 		if (strlen($records)) {
 			$this->setRecords($records)->persistElements();

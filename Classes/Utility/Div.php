@@ -1,6 +1,10 @@
 <?php
 /**
- * 
+ * Helper Class which makes various tools and helper available
+ *
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
  */
 class Tx_Jqct_Utility_Div {
 	

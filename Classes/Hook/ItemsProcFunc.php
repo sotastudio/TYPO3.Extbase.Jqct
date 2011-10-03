@@ -1,6 +1,8 @@
 <?php
 /**
- * 
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
  */
 class Tx_Jqct_Hook_ItemsProcFunc {
 
@@ -14,7 +16,7 @@ class Tx_Jqct_Hook_ItemsProcFunc {
 	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
 			// remove the detail action from the listAction
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['jqct']['switchableControllerActions']['listActionOnly'])) {
-			$config['items'][0][1] = 'News->list;';
+			$config['items'][0][1] = 'Show;';
 		}
 
 			// add additional actions

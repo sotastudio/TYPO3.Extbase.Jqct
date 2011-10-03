@@ -1,6 +1,13 @@
 <?php
 require_once(t3lib_extmgm::extPath('jqct') . 'Tests/BaseTestCase.php');
 
+/**
+ * Test Case for the Content Element Repository
+ *
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
+ */
 class Tx_Jqct_Tests_Unit_Domain_Model_ContentTest extends Tx_Jqct_BaseTestCase {
 	
 	public function setUp() {

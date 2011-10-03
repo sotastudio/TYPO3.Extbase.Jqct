@@ -1,6 +1,10 @@
 <?php
 /**
  * An abstract constraint for simple content elements, like Tabs and Accordion
+ *
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
  */
 abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_DomainObject_AbstractValueObject {
 

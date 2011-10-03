@@ -1,6 +1,10 @@
 <?php
 /**
  * The ContentTools controller for the Jqct extension
+ *
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
  * @todo Work out how to handle a missing rendering method
  * @todo Cleaning up the code, e.g. outsoorcing the initialization of the Rendering Method
  */

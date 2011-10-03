@@ -1,6 +1,10 @@
 <?php
 /**
  * Abstract base controller for the Jqct extension
+ * 
+ * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @package TYPO3
+ * @subpackage tx_jqct
  */
 abstract class Tx_Jqct_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 
