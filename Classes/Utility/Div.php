@@ -26,7 +26,7 @@ class Tx_Jqct_Utility_Div {
 		return get_class_methods($obj);
 	}
 	
-	static function getClassVars($obj) {
+	public function getClassVars($obj) {
 		return get_object_vars($obj);
 	}
 
@@ -94,7 +94,7 @@ class Tx_Jqct_Utility_Div {
     /**
      * Check whether t3jquery is available and accessible
      *
-     * @return boolean
+     * @return boolean Result of the T3 jQuery check
      */
 	public function checkForT3jquery() {
             // Check for T3 jQuery
