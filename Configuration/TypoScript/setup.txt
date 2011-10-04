@@ -1,0 +1,20 @@
+plugin.tx_jqct {
+	view {
+		templateRootPath = {$plugin.tx_jqct.view.templateRootPath}
+		partialRootPath = {$plugin.tx_jqct.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_jqct.view.layoutRootPath}
+	}
+	settings {
+		templates {
+			accordion = EXT:jqct/Resources/Private/Templates/ContentTools/accordion.html
+			tabs = EXT:jqct/Resources/Private/Templates/ContentTools/tabs.html
+		}
+		pathCss = 1
+		pathJsLibJquery = 2
+		pathJsLibJqueryUi = 3
+	}
+	persistence {
+		classes {
+		}
+	}
+}
