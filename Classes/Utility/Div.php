@@ -30,4 +30,65 @@ class Tx_Jqct_Utility_Div {
 		return get_object_vars($obj);
 	}
 
+	/**
+	 * Returns the reference to a 'resource' in TypoScript.
+	 * 
+	 * @todo Check whether there is a better solution for this
+	 */
+	public function getFileResource($file) {
+		return $GLOBALS['TSFE']->tmpl->getFileName($file);
+	}
+	
+	/**
+	 * Checks a passed CSS or JS file and renders it with the Page Content
+	 * 
+	 * @todo Make it more flexible so it can handle an array
+	 * @param  string  $file: Given filename incl. path
+	 * @param  bool  $moveJSToFooter
+	 * @return  void
+	 */
+	public function includeCssJsFile($file, $moveJSToFooter = true) {
+		$mediaTypeSplit = strrchr($file, '.');
+		$resolved = $this->getFileResource($file);
+		
+		if($resolved) {
+			($mediaTypeSplit == '.js') 
+				? (($moveJSToFooter) 
+					? $GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($resolved) 
+					: $GLOBALS['TSFE']->getPageRenderer()->addJsFile($resolved)) 
+				: $GLOBALS['TSFE']->getPageRenderer()->addCssFile($resolved);
+		}
+	}
+	
+	/**
+	 * Checks and includes CSS and JS files
+	 * 
+	 * @todo Work out
+	 * @return  void
+	 */
+	public function processCssJs() {
+		// Check for t3jquery
+		if (t3lib_extMgm::isLoaded('t3jquery')) {
+      require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+    }
+		
+    // if t3jquery is loaded and the custom Library had been created
+    if (T3JQUERY === true) {
+      tx_t3jquery::addJqJS();
+		// if none of the previous is true, include own libraries
+    } else {
+    	$files = array();
+			if (intval($this->conf['jQuery.']['include'])) {
+				$this->hObj->includeCssJsFile($this->conf['jQuery.']['file'], $this->moveJSToFooter);
+			}
+			if (intval($this->conf['jQuery.']['includeUI'])) {
+				$this->hObj->includeCssJsFile($this->conf['jQuery.']['fileUI'], $this->moveJSToFooter);
+			}
+		}
+				
+		if (intval($this->conf['includeCSS'])) {
+			$this->hObj->includeCssJsFile($this->conf['fileCSS']);
+		}		
+	}
+	
 }

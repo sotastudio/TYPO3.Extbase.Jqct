@@ -45,12 +45,15 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 			if (is_object($renderObj)) {
 					// Set another Template, if neccesary (based on TS Setup)
 				if ($tpl = $this->settings['templates'][strtolower($renderChoosen)]) {
-					$this->view->setTemplatePathAndFilename( $this->getFileResource($tpl) );
-				}
+					$this->view->setTemplatePathAndFilename( $this->div->getFileResource($tpl) );
+				} else {
+                    $this->addFlashMessage('templateNotDeclared');
+                }
+
 					// If everything went fine, just render the stuff
 				$tplObj = array(
                     'data' => $this->contentObject->data,
-					'content' => $renderObj->content->getAll()
+					'content' => $renderObj->content->getAll(),
 				);
 				$this->view->assignMultiple($tplObj);
 			}

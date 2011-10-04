@@ -10,6 +10,7 @@
 			<label index="header.settingsPlugin">Plugin Settings</label>
 			<label index="flashmessage.ContentTools.rendering">Rendering not defined.</label>
 			<label index="flashmessage.ContentTools.renderingModel">Invalid Rendering defined.</label>
+            <label index="flashmessage.ContentTools.templateNotDeclared">There's no template declared, matching the current Rendering Model.</label>
 			<!-- Common -->
 		</languageKey>
 		<languageKey index="de" type="array">
