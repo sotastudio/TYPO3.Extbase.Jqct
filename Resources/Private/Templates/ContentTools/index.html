@@ -1,18 +1,1 @@
 <f:renderFlashMessages class="tx-extbase-flash-message" />
-
-<f:if condition="{settings}">
-	<h1><f:translate key="header.settingsPlugin">Settings</f:translate></h1>
-</f:if>
-<ul>
-	<f:for each="{settings}" as="value" key="name">
-		<li>{name}: {value}</li>
-	</f:for>
-</ul>
-
-<f:if condition="{content}">
-	<h1>Content Elements</h1>
-</f:if>
-<f:for each="{content}" as="ce" key="key">
-	<h2>{ce.header}</h2>
-	<f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
-</f:for>
