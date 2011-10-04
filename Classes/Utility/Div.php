@@ -68,11 +68,11 @@ class Tx_Jqct_Utility_Div {
 	 */
 	public function processCssJs() {
 		// Check for t3jquery
-		if (t3lib_extMgm::isLoaded('t3jquery')) {
+	if (t3lib_extMgm::isLoaded('t3jquery')) {
       require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
     }
 		
-    // if t3jquery is loaded and the custom Library had been created
+        // if t3jquery is loaded and the custom Library had been created
     if (T3JQUERY === true) {
       tx_t3jquery::addJqJS();
 		// if none of the previous is true, include own libraries
@@ -90,5 +90,23 @@ class Tx_Jqct_Utility_Div {
 			$this->hObj->includeCssJsFile($this->conf['fileCSS']);
 		}		
 	}
-	
+    
+    /**
+     * Check whether t3jquery is available and accessible
+     *
+     * @return boolean
+     */
+	public function checkForT3jquery() {
+            // Check for T3 jQuery
+        if (t3lib_extMgm::isLoaded('t3jquery')) {
+            require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+        }
+            // if T3 jQuery is loaded and the custom Library had been created
+        if (T3JQUERY === true) {
+            tx_t3jquery::addJqJS();
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 }

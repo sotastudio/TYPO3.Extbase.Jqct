@@ -6,7 +6,7 @@
  * @package TYPO3
  * @subpackage tx_jqct
  * @todo Work out how to handle a missing rendering method
- * @todo Cleaning up the code, e.g. outsoorcing the initialization of the Rendering Method
+ * @todo Cleaning up the code, e.g. outsourcing the initialization of the Rendering Method
  */
 class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_AbstractController {
 

@@ -203,9 +203,9 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	}
 
 	/**
-	 * Returns whatever as a formatted string
+	 * Returns object as a formatted string
 	 *
-	 * @todo Work this thing out...
+	 * @todo Work this thing out... this method is not really needed at all
 	 * @return string
 	 */
 	public function __toString() {
