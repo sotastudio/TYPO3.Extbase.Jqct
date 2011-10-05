@@ -3,7 +3,8 @@
     $(document).ready(function() {
         $("#jqctAccordion-]]>{data.uid}<![CDATA[").accordion({
             active : ]]>{settings.showfirst}<![CDATA[,
-            animated : 'slide',
+            animated : false,
+            autoHeight: false,
             header : 'h3.header'
         });
     });

@@ -14,8 +14,6 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 	 * @var tslib_cObj
 	 */
 	protected $contentObject;
-	protected $contentObject;
-
 	
 	/**
 	 * Kinda construct
