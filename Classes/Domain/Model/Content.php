@@ -47,8 +47,6 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		}
 		
 		//t3lib_utility_Debug::debug($this->request);
-		
-		//t3lib_utility_Debug::debug(get_class_methods(get_class($this->contentObject)));
 	}
 
 	
@@ -65,9 +63,10 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid,header',
 			'tt_content',
-			'uid IN (' . $records .') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid
+			'uid IN (' . $records .') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid,
+            'FIND_IN_SET (uid, "' . $records .'")'
 		);
-		
+
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$this->content[] = array(
 				'uid' => $row['uid'],

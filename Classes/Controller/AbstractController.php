@@ -26,7 +26,7 @@ abstract class Tx_Jqct_Controller_AbstractController extends Tx_Extbase_MVC_Cont
 	public function injectDivRepository(Tx_Jqct_Utility_Div $div) {
 		$this->div = $div;
 	}
-	
+
 	/**
 	 * Returns the reference to a 'resource' in TypoScript.
 	 * 

@@ -9,6 +9,14 @@ plugin.tx_jqct {
 			accordion = EXT:jqct/Resources/Private/Templates/ContentTools/accordion.html
 			tabs = EXT:jqct/Resources/Private/Templates/ContentTools/tabs.html
 		}
+		files {
+            jQuery = EXT:jqct/Resources/Public/Scripts/jquery-1.6.4.min.js
+            jQueryUi = EXT:jqct/Resources/Public/Scripts/jquery-ui-1.8.16.custom.min.js
+            styles = EXT:jqct/Resources/Public/Styles/common.css
+		}
+		moveJsToFooter = 0
+		jQueryNoConflict = 0
+
 		pathCss = 1
 		pathJsLibJquery = 2
 		pathJsLibJqueryUi = 3

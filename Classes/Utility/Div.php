@@ -47,13 +47,14 @@ class Tx_Jqct_Utility_Div {
 	 * @param  bool  $moveJSToFooter
 	 * @return  void
 	 */
-	public function includeCssJsFile($file, $moveJSToFooter = true) {
+	public function includeCssJsFile($file, $moveJsToFooter) {
+
 		$mediaTypeSplit = strrchr($file, '.');
 		$resolved = $this->getFileResource($file);
 		
 		if($resolved) {
-			($mediaTypeSplit == '.js') 
-				? (($moveJSToFooter) 
+			($mediaTypeSplit == '.js')
+				? (($moveJsToFooter)
 					? $GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($resolved) 
 					: $GLOBALS['TSFE']->getPageRenderer()->addJsFile($resolved)) 
 				: $GLOBALS['TSFE']->getPageRenderer()->addCssFile($resolved);
@@ -66,18 +67,24 @@ class Tx_Jqct_Utility_Div {
 	 * @todo Work out
 	 * @return  void
 	 */
-	public function processCssJs() {
-		// Check for t3jquery
-	if (t3lib_extMgm::isLoaded('t3jquery')) {
-      require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
-    }
-		
-        // if t3jquery is loaded and the custom Library had been created
-    if (T3JQUERY === true) {
-      tx_t3jquery::addJqJS();
-		// if none of the previous is true, include own libraries
-    } else {
-    	$files = array();
+	public function processCssJs($files, $moveJsToFooter = FALSE) {
+        if ( is_array($files) ) {
+
+        } else {
+
+        }
+        /*
+            // Check for t3jquery
+        if (t3lib_extMgm::isLoaded('t3jquery')) {
+          require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+        }
+
+            // if t3jquery is loaded and the custom Library had been created
+        if (T3JQUERY === true) {
+          tx_t3jquery::addJqJS();
+            // if none of the previous is true, include own libraries
+        } else {
+    	    $files = array();
 			if (intval($this->conf['jQuery.']['include'])) {
 				$this->hObj->includeCssJsFile($this->conf['jQuery.']['file'], $this->moveJSToFooter);
 			}
@@ -88,7 +95,8 @@ class Tx_Jqct_Utility_Div {
 				
 		if (intval($this->conf['includeCSS'])) {
 			$this->hObj->includeCssJsFile($this->conf['fileCSS']);
-		}		
+		}
+        */
 	}
     
     /**
