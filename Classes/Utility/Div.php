@@ -67,36 +67,17 @@ class Tx_Jqct_Utility_Div {
 	 * @todo Work out
 	 * @return  void
 	 */
-	public function processCssJs($files, $moveJsToFooter = FALSE) {
+	public function processCssJs($files, $moveJsToFooter = FALSE, $excludeJQuery = true) {
+        $jQuery = 'jquery';
         if ( is_array($files) ) {
-
+            foreach($files as $name => $file) {
+                if ($excludeJQuery && stristr($name, $jQuery)) continue;
+                $this->includeCssJsFile($file, $moveJsToFooter);
+            }
         } else {
-
+            if ($excludeJQuery && stristr($name, $jQuery)) return;
+            $this->includeCssJsFile($file, $moveJsToFooter);
         }
-        /*
-            // Check for t3jquery
-        if (t3lib_extMgm::isLoaded('t3jquery')) {
-          require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
-        }
-
-            // if t3jquery is loaded and the custom Library had been created
-        if (T3JQUERY === true) {
-          tx_t3jquery::addJqJS();
-            // if none of the previous is true, include own libraries
-        } else {
-    	    $files = array();
-			if (intval($this->conf['jQuery.']['include'])) {
-				$this->hObj->includeCssJsFile($this->conf['jQuery.']['file'], $this->moveJSToFooter);
-			}
-			if (intval($this->conf['jQuery.']['includeUI'])) {
-				$this->hObj->includeCssJsFile($this->conf['jQuery.']['fileUI'], $this->moveJSToFooter);
-			}
-		}
-				
-		if (intval($this->conf['includeCSS'])) {
-			$this->hObj->includeCssJsFile($this->conf['fileCSS']);
-		}
-        */
 	}
     
     /**

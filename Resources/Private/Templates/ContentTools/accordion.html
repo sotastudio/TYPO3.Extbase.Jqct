@@ -5,7 +5,7 @@
             active : ]]>{settings.showfirst}<![CDATA[,
             animated : false,
             autoHeight: false,
-            header : 'h3.header'
+            header : 'div.header'
         });
     });
     ]]>
@@ -14,7 +14,7 @@
 <div id="jqctAccordion-{data.uid}">
     <f:for each="{content}" as="ce" key="key">
         <div id="jqctAccordionContent-{data.uid}-{key}">
-            <h3 class="header">{ce.header}</h3>
+            <div class="header">{ce.header}</div>
             <div>
                 <f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
             </div>
