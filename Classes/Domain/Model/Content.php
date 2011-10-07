@@ -58,7 +58,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	protected function persistElements() {
 		$records = $this->getRecords();
-		$recordList = Tx_Extbase_Utility_Arrays::trimExplode(',', $records);
+		//$recordList = Tx_Extbase_Utility_Arrays::trimExplode(',', $records);
 		
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid,header',
