@@ -3,14 +3,17 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_tab.settings</sheetTitle>
+					<sheetTitle>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_tab.settings
+					</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
-					
+
 					<settings.renderingMethod>
 						<TCEforms>
-							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod</label>
+							<label>
+								LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod
+							</label>
 							<config>
 								<type>select</type>
 								<!--<itemsProcFunc>Tx_Jqct_Hook_ItemsProcFunc->user_switchableControllerActions</itemsProcFunc>-->
@@ -20,11 +23,15 @@
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.1</numIndex>
+										<numIndex index="0">
+											LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.1
+										</numIndex>
 										<numIndex index="1">Tabs</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.2</numIndex>
+										<numIndex index="0">
+											LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.2
+										</numIndex>
 										<numIndex index="1">Accordion</numIndex>
 									</numIndex>
 								</items>
@@ -34,10 +41,11 @@
 							</config>
 						</TCEforms>
 					</settings.renderingMethod>
-					
+
 					<settings.records>
 						<TCEforms>
-							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.records</label>
+							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.records
+							</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -50,41 +58,47 @@
 							</config>
 						</TCEforms>
 					</settings.records>
-					
-          <settings.headerOverride>
-            <TCEforms>
-              <label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.headerOverride</label>
-              <config>
-                <type>text</type>
-                <cols>30</cols>
-                <rows>5</rows>
-              </config>
-            </TCEforms>
-          </settings.headerOverride>						
 
-  				<settings.elementMerging>
-  					<TCEforms>
-  						<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.elementMerging</label>
-  						<config>
-  							<type>input</type>
-  							<size>30</size>
-  						</config>
-  					</TCEforms>
-  				</settings.elementMerging>
-					
+					<settings.headerOverride>
+						<TCEforms>
+							<label>
+								LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.headerOverride
+							</label>
+							<config>
+								<type>text</type>
+								<cols>30</cols>
+								<rows>5</rows>
+							</config>
+						</TCEforms>
+					</settings.headerOverride>
+
+					<settings.elementMerging>
+						<TCEforms>
+							<label>
+								LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.elementMerging
+							</label>
+							<config>
+								<type>input</type>
+								<size>30</size>
+							</config>
+						</TCEforms>
+					</settings.elementMerging>
+
 					<settings.ajax>
 						<TCEforms>
-							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.ajax</label>
+							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.ajax
+							</label>
 							<config>
 								<type>check</type>
 								<default>0</default>
 							</config>
 						</TCEforms>
 					</settings.ajax>
-					
+
 					<settings.showfirst>
 						<TCEforms>
-							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.showfirst</label>
+							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.showfirst
+							</label>
 							<config>
 								<type>input</type>
 								<size>2</size>

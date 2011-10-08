@@ -5,6 +5,7 @@ plugin.tx_jqct {
 		layoutRootPath = {$plugin.tx_jqct.view.layoutRootPath}
 	}
 	settings {
+	    debug = 0
 		templates {
 			accordion = EXT:jqct/Resources/Private/Templates/ContentTools/accordion.html
 			tabs = EXT:jqct/Resources/Private/Templates/ContentTools/tabs.html

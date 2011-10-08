@@ -5,13 +5,15 @@
             $this = $(this);
             href = $this.attr("href");
             arr = href.split("#")
-            if(arr[1])
+            if (arr[1])
                 $this.attr("href", "#" + arr[1]);
         });
         $("#jqctTab-]]>{data.uid}<![CDATA[").tabs({
-            selected : ]]>{settings.showfirst}<![CDATA[
-        });
+            selected : ]]>{settings.showfirst}
+        <![CDATA[
     });
+    })
+    ;
     ]]>
 </script>
 
@@ -19,7 +21,8 @@
     <ul>
         <f:for each="{content}" as="ce" key="key">
             <li>
-                <a id="jqctTabLink-{data.uid}-{key}" class="elTab-{data.uid}-href" href="index.php#jqctTabContent-{data.uid}-{key}">{ce.header}</a>
+                <a id="jqctTabLink-{data.uid}-{key}" class="elTab-{data.uid}-href"
+                   href="index.php#jqctTabContent-{data.uid}-{key}">{ce.header}</a>
             </li>
         </f:for>
     </ul>
