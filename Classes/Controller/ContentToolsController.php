@@ -114,6 +114,7 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
             $this->renderingModel = $this->objectManager->get($this->getRenderingModelName());
         } catch (Exception $e) {
             $this->addFlashMessage('renderingModel');
+						$this->addFlashMessage($e);
         }
         return (is_object($this->renderingModel)) ? TRUE : FALSE;
     }

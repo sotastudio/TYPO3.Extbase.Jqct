@@ -41,6 +41,15 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
     {
         $this->configurationManager = $conf;
     }
+		
+		/**
+		 * @param array $settings
+		 * @return void
+		 */
+		public function setPluginConfiguration(array &$settings)
+		{
+			$this->pluginConfiguration =& $settings;
+		}
 
     /**
      * @param Tx_Jqct_Domain_Model_Content $content
@@ -50,7 +59,7 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
     {
         $this->content = $content;
     }
-
+		
     /**
      * Kinda constructor
      * Beeing executed right after __construct and has access to injected Objects
@@ -61,13 +70,13 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
     {
         $this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
 
-        /*
+				/*
         list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
 
         if ($procHeaderOverride || $procElementMerging) {
             $this->content->processMergingAndOverride($procHeaderOverride, $procElementMerging);
         }
-        */
+				*/
 
         //t3lib_utility_Debug::debug($this->pluginConfiguration);
 

@@ -49,13 +49,12 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
      */
     public function initializeObject()
     {
-        // Gets the Configuration Manager - It's a
         $this->contentObject = $this->configurationManager->getContentObject();
         $this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
+				$this->setRecords($this->getSetting('records'));
 
-        $records = &$this->pluginConfiguration['records'];
-        if (strlen($records)) {
-            $this->setRecords($records)->persistElements();
+        if ($this->hasRecords()) {
+            $this->persistElements()->processMergingAndOverride();
         } else {
             return NULL;
         }
@@ -80,23 +79,21 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
         while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
             $this->content[] = array('uid' => $row['uid'], 'header' => $row['header'], 'content' => $this->contentObject->RECORDS($this->getConfByUid($row['uid'])));
         }
+				return $this;
     }
 
-    /**
+    /**<
      * Processes the given Element Merging and Header Override
      *
      * @param string $procElementMerging Directives of Element Merging
      * @param string $
      */
-    public function processMergingAndOverride($procHeaderOverride, $procElementMerging)
+    public function processMergingAndOverride()
     {
-        echo 'Element: ' . $this->contentObject->data['uid'];
-        echo '<br />';
-        t3lib_utility_Debug::debug($procHeaderOverride);
-        echo '<br />';
-        t3lib_utility_Debug::debug($procElementMerging);
-        echo '<br />';
-        return $this;
+			list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
+			
+			if ($procHeaderOverride || $procElementMerging) {
+			}
     }
 
     /**
@@ -232,16 +229,11 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
     {
         return array('tables' => 'tt_content', 'source' => $uid, 'dontCheckPid' => 1,);
     }
-
-    /**
-     * Returns object as a formatted string
-     *
-     * @todo Work this thing out... this method is not really needed at all
-     * @return string
-     */
-    public function __toString()
+		
+    final protected function getSetting($key)
     {
-        return 'content as a string';
+        $val =& $this->pluginConfiguration[$key];
+        return (!empty($val)) ? $val : NULL;
     }
 
 }
