@@ -9,92 +9,92 @@
 abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_DomainObject_AbstractValueObject
 {
 
-    /**
-     * @var Tx_Extbase_Configuration_ConfigurationManager
-     */
-    protected $configurationManager;
+	/**
+	 * @var Tx_Extbase_Configuration_ConfigurationManager
+	 */
+	protected $configurationManager;
 
-    /**
-     * @var tslib_cObj
-     */
-    protected $contentObject;
+	/**
+	 * @var tslib_cObj
+	 */
+	protected $contentObject;
 
-    /**
-     * Stores the plugin configuration from Flexform
-     *
-     * @var array
-     */
-    protected $pluginConfiguration;
+	/**
+	 * Stores the plugin configuration from Flexform
+	 *
+	 * @var array
+	 */
+	protected $pluginConfiguration;
 
-    /**
-     * Content
-     *
-     * @var Tx_Jqct_Domain_Model_Content
-     */
-    public $content;
+	/**
+	 * Content
+	 *
+	 * @var Tx_Jqct_Domain_Model_Content
+	 */
+	public $content;
 
-    /**
-     * @param Tx_Extbase_Configuration_ConfigurationManager $conf
-     * @return void
-     */
-    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $conf)
-    {
-        $this->configurationManager = $conf;
-    }
-		
-		/**
-		 * @param array $settings
-		 * @return void
-		 */
-		public function setPluginConfiguration(array &$settings)
-		{
-			$this->pluginConfiguration =& $settings;
-		}
+	/**
+	 * @param Tx_Extbase_Configuration_ConfigurationManager $conf
+	 * @return void
+	 */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $conf)
+	{
+		$this->configurationManager = $conf;
+	}
 
-    /**
-     * @param Tx_Jqct_Domain_Model_Content $content
-     * @return void
-     */
-    public function injectContent(Tx_Jqct_Domain_Model_Content $content)
-    {
-        $this->content = $content;
-    }
-		
-    /**
-     * Kinda constructor
-     * Beeing executed right after __construct and has access to injected Objects
-     *
-     * @return void
-     */
-    public function initializeObject()
-    {
-        $this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
+	/**
+	 * @param array $settings
+	 * @return void
+	 */
+	public function setPluginConfiguration(array &$settings)
+	{
+		$this->pluginConfiguration =& $settings;
+	}
 
-				/*
-        list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
+	/**
+	 * @param Tx_Jqct_Domain_Model_Content $content
+	 * @return void
+	 */
+	public function injectContent(Tx_Jqct_Domain_Model_Content $content)
+	{
+		$this->content = $content;
+	}
 
-        if ($procHeaderOverride || $procElementMerging) {
-            $this->content->processMergingAndOverride($procHeaderOverride, $procElementMerging);
-        }
-				*/
+	/**
+	 * Kinda constructor
+	 * Beeing executed right after __construct and has access to injected Objects
+	 *
+	 * @return void
+	 */
+	public function initializeObject()
+	{
+		$this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
 
-        //t3lib_utility_Debug::debug($this->pluginConfiguration);
+		/*
+	  list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
 
-        //t3lib_utility_Debug::debug($this->generateUid('prefix', 'suffix'));
-        //$GLOBALS['TYPO3_DB']->debugOutput = TRUE;
-        //echo '---' . $GLOBALS['TYPO3_DB']->debug_lastBuiltQuery . '---';
-    }
+	  if ($procHeaderOverride || $procElementMerging) {
+		  $this->content->processMergingAndOverride($procHeaderOverride, $procElementMerging);
+	  }
+			  */
 
-    /**
-     * Returns the Configuration directive based on the given key
-     *
-     * @param string $key Key of the corresponding Configuration directive
-     * @return mixed
-     */
-    protected function getSetting($key)
-    {
-        $val = $this->pluginConfiguration[$key];
-        return (!empty($val)) ? $val : NULL;
-    }
+		//t3lib_utility_Debug::debug($this->pluginConfiguration);
+
+		//t3lib_utility_Debug::debug($this->generateUid('prefix', 'suffix'));
+		//$GLOBALS['TYPO3_DB']->debugOutput = TRUE;
+		//echo '---' . $GLOBALS['TYPO3_DB']->debug_lastBuiltQuery . '---';
+	}
+
+	/**
+	 * Returns the Configuration directive based on the given key
+	 *
+	 * @param string $key Key of the corresponding Configuration directive
+	 * @return mixed
+	 */
+	protected function getSetting($key)
+	{
+		$val = $this->pluginConfiguration[$key];
+		return (!empty($val)) ? $val : NULL;
+	}
 
 }

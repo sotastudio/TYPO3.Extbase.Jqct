@@ -12,228 +12,228 @@
 class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject
 {
 
-    /**
-     * @var Tx_Extbase_Configuration_ConfigurationManager
-     */
-    protected $configurationManager;
+	/**
+	 * @var Tx_Extbase_Configuration_ConfigurationManager
+	 */
+	protected $configurationManager;
 
-    /**
-     * @var tslib_cObj
-     */
-    protected $contentObject;
+	/**
+	 * @var tslib_cObj
+	 */
+	protected $contentObject;
 
-    /**
-     * @var array
-     */
-    protected $pluginConfiguration;
+	/**
+	 * @var array
+	 */
+	protected $pluginConfiguration;
 
-    /**
-     * @var string
-     */
-    protected $records;
+	/**
+	 * @var string
+	 */
+	protected $records;
 
-    /**
-     * @param Tx_Extbase_Configuration_ConfigurationManager $conf
-     * @return void
-     */
-    final public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $conf)
-    {
-        $this->configurationManager = $conf;
-    }
+	/**
+	 * @param Tx_Extbase_Configuration_ConfigurationManager $conf
+	 * @return void
+	 */
+	final public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $conf)
+	{
+		$this->configurationManager = $conf;
+	}
 
-    /**
-     * Kinda constructor
-     * Beeing executed right after __construct and has access to injected Objects
-     *
-     * @return void
-     */
-    public function initializeObject()
-    {
-        $this->contentObject = $this->configurationManager->getContentObject();
-        $this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
-				$this->setRecords($this->getSetting('records'));
+	/**
+	 * Kinda constructor
+	 * Beeing executed right after __construct and has access to injected Objects
+	 *
+	 * @return void
+	 */
+	public function initializeObject()
+	{
+		$this->contentObject = $this->configurationManager->getContentObject();
+		$this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
+		$this->setRecords($this->getSetting('records'));
 
-        if ($this->hasRecords()) {
-            $this->persistElements()->processMergingAndOverride();
-        } else {
-            return NULL;
-        }
-    }
+		if ($this->hasRecords()) {
+			$this->persistElements()->processMergingAndOverride();
+		} else {
+			return NULL;
+		}
+	}
 
-    /**
-     * Preserves the referenced Content Elements defined in the Flexform
-     *
-     * @todo Build query by an Extbase Query Factory
-     * @return void
-     */
-    final protected function persistElements()
-    {
-        $records = $this->getRecords();
+	/**
+	 * Preserves the referenced Content Elements defined in the Flexform
+	 *
+	 * @todo Build query by an Extbase Query Factory
+	 * @return void
+	 */
+	final protected function persistElements()
+	{
+		$records = $this->getRecords();
 
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,header', // SELECT
-                                                      'tt_content', // FROM
-                                                      'uid IN (' . $records . ') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid, //WHERE
-                                                      'FIND_IN_SET (uid, "' . $records . '")' // ORDER BY
-        );
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,header', // SELECT
+													  'tt_content', // FROM
+													  'uid IN (' . $records . ') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid, //WHERE
+													  'FIND_IN_SET (uid, "' . $records . '")' // ORDER BY
+		);
 
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-            $this->content[] = array('uid' => $row['uid'], 'header' => $row['header'], 'content' => $this->contentObject->RECORDS($this->getConfByUid($row['uid'])));
-        }
-				return $this;
-    }
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			$this->content[] = array('uid' => $row['uid'], 'header' => $row['header'], 'content' => $this->contentObject->RECORDS($this->getConfByUid($row['uid'])));
+		}
+		return $this;
+	}
 
-    /**<
-     * Processes the given Element Merging and Header Override
-     *
-     * @param string $procElementMerging Directives of Element Merging
-     * @param string $
-     */
-    public function processMergingAndOverride()
-    {
-			list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
-			
-			if ($procHeaderOverride || $procElementMerging) {
-			}
-    }
+	/**<
+	 * Processes the given Element Merging and Header Override
+	 *
+	 * @param string $procElementMerging Directives of Element Merging
+	 * @param string $
+	 */
+	public function processMergingAndOverride()
+	{
+		list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
 
-    /**
-     * Returns all Content Elements as-is
-     *
-     * @return array Complete Array of all Content Elements including their Uid
-     */
-    final public function getAll()
-    {
-        return $this->content;
-    }
+		if ($procHeaderOverride || $procElementMerging) {
+		}
+	}
 
-    /**
-     * Returns the Header of a Content Element by its Uid
-     *
-     * @param string $uid Uid of the Content Element
-     * @return string Header of the Content Element
-     */
-    final public function getHeaderByUid($uid)
-    {
-        foreach (array_keys($this->content) as $ak) {
-            $v = &$this->content[$ak];
-            if ($v['uid'] == $uid)
-                return $v['header'];
-        }
-    }
+	/**
+	 * Returns all Content Elements as-is
+	 *
+	 * @return array Complete Array of all Content Elements including their Uid
+	 */
+	final public function getAll()
+	{
+		return $this->content;
+	}
 
-    /**
-     * Returns the Header of a Content Element by its array index
-     *
-     * @param string $uid Uid of the Content Element
-     * @return string Header of the Content Element
-     */
-    final public function getHeaderByIndex($index)
-    {
-        return $this->content[$index]['header'];
-    }
+	/**
+	 * Returns the Header of a Content Element by its Uid
+	 *
+	 * @param string $uid Uid of the Content Element
+	 * @return string Header of the Content Element
+	 */
+	final public function getHeaderByUid($uid)
+	{
+		foreach (array_keys($this->content) as $ak) {
+			$v = &$this->content[$ak];
+			if ($v['uid'] == $uid)
+				return $v['header'];
+		}
+	}
 
-    /**
-     * Returns all Headers of the Content Elements
-     *
-     * @return array Headers of the Content Elements
-     */
-    final public function getHeaders()
-    {
-        $o = array();
-        foreach (array_keys($this->content) as $ak) {
-            $v = &$this->content[$ak];
-            $o[] = &$v['header'];
-        }
-        return $o;
-    }
+	/**
+	 * Returns the Header of a Content Element by its array index
+	 *
+	 * @param string $uid Uid of the Content Element
+	 * @return string Header of the Content Element
+	 */
+	final public function getHeaderByIndex($index)
+	{
+		return $this->content[$index]['header'];
+	}
 
-    /**
-     * Returns the Content of a Content Element by its Uid
-     *
-     * @param string $uid Uid of the Content Element
-     * @return string Content of the Content Element
-     */
-    final public function getContentByUid($uid)
-    {
-        foreach (array_keys($this->content) as $ak) {
-            $v = &$this->content[$ak];
-            if ($v['uid'] == $uid)
-                return $v['content'];
-        }
-    }
+	/**
+	 * Returns all Headers of the Content Elements
+	 *
+	 * @return array Headers of the Content Elements
+	 */
+	final public function getHeaders()
+	{
+		$o = array();
+		foreach (array_keys($this->content) as $ak) {
+			$v = &$this->content[$ak];
+			$o[] = &$v['header'];
+		}
+		return $o;
+	}
 
-    /**
-     * Returns the Content of a Content Element by its array index
-     *
-     * @param string $uid Uid of the Content Element
-     * @return string Content of the Content Element
-     */
-    final public function getContentByIndex($index)
-    {
-        return $this->content[$index]['content'];
-    }
+	/**
+	 * Returns the Content of a Content Element by its Uid
+	 *
+	 * @param string $uid Uid of the Content Element
+	 * @return string Content of the Content Element
+	 */
+	final public function getContentByUid($uid)
+	{
+		foreach (array_keys($this->content) as $ak) {
+			$v = &$this->content[$ak];
+			if ($v['uid'] == $uid)
+				return $v['content'];
+		}
+	}
 
-    /**
-     * Returns all Contents of the Content Elements
-     *
-     * @return array Content of the Content Elements
-     */
-    final public function getContents()
-    {
-        $o = array();
-        foreach (array_keys($this->content) as $ak) {
-            $v = &$this->content[$ak];
-            $o[] = &$v['content'];
-        }
-        return $o;
-    }
+	/**
+	 * Returns the Content of a Content Element by its array index
+	 *
+	 * @param string $uid Uid of the Content Element
+	 * @return string Content of the Content Element
+	 */
+	final public function getContentByIndex($index)
+	{
+		return $this->content[$index]['content'];
+	}
 
-    /**
-     * Sets the list of Content Elements referenced in the Frontend Plugin
-     *
-     * @return Tx_Jqct_Domain_Model_Content Reference to this Object for chaining
-     */
-    final protected function setRecords($records)
-    {
-        $this->records = $records;
-        return $this;
-    }
+	/**
+	 * Returns all Contents of the Content Elements
+	 *
+	 * @return array Content of the Content Elements
+	 */
+	final public function getContents()
+	{
+		$o = array();
+		foreach (array_keys($this->content) as $ak) {
+			$v = &$this->content[$ak];
+			$o[] = &$v['content'];
+		}
+		return $o;
+	}
 
-    /**
-     * Returns the list of Content Elements referenced in the Frontend Plugin
-     *
-     * @return string Pipe-separated Uid list of referenced Content Elements
-     */
-    final protected function getRecords()
-    {
-        return $this->records;
-    }
+	/**
+	 * Sets the list of Content Elements referenced in the Frontend Plugin
+	 *
+	 * @return Tx_Jqct_Domain_Model_Content Reference to this Object for chaining
+	 */
+	final protected function setRecords($records)
+	{
+		$this->records = $records;
+		return $this;
+	}
 
-    /**
-     * Checks whether there is any Content Element
-     *
-     * @return boolean Well, this is self-explanatory
-     */
-    final public function hasRecords()
-    {
-        return (strlen($this->records)) ? TRUE : FALSE;
-    }
+	/**
+	 * Returns the list of Content Elements referenced in the Frontend Plugin
+	 *
+	 * @return string Pipe-separated Uid list of referenced Content Elements
+	 */
+	final protected function getRecords()
+	{
+		return $this->records;
+	}
 
-    /**
-     * Returns a Configuration Array for requesting Content Elements
-     *
-     * @param string Uid(s) of the requested Content Element(s)
-     * @return array Configuration Array
-     */
-    final protected function getConfByUid($uid)
-    {
-        return array('tables' => 'tt_content', 'source' => $uid, 'dontCheckPid' => 1,);
-    }
-		
-    final protected function getSetting($key)
-    {
-        $val =& $this->pluginConfiguration[$key];
-        return (!empty($val)) ? $val : NULL;
-    }
+	/**
+	 * Checks whether there is any Content Element
+	 *
+	 * @return boolean Well, this is self-explanatory
+	 */
+	final public function hasRecords()
+	{
+		return (strlen($this->records)) ? TRUE : FALSE;
+	}
+
+	/**
+	 * Returns a Configuration Array for requesting Content Elements
+	 *
+	 * @param string Uid(s) of the requested Content Element(s)
+	 * @return array Configuration Array
+	 */
+	final protected function getConfByUid($uid)
+	{
+		return array('tables' => 'tt_content', 'source' => $uid, 'dontCheckPid' => 1,);
+	}
+
+	final protected function getSetting($key)
+	{
+		$val =& $this->pluginConfiguration[$key];
+		return (!empty($val)) ? $val : NULL;
+	}
 
 }

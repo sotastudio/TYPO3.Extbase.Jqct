@@ -1,30 +1,30 @@
 <script type="text/javascript">
-    <![CDATA[
-    $(document).ready(function() {
-        $("#jqctAccordion-]]>{data.uid}<![CDATA[").accordion({
-                    active : ]]>{settings.showfirst}<![CDATA[,
-                animated
-        :
-        false,
-                autoHeight
-        :
-        false,
-                header
-        :
-        'div.header'
-    });
-    })
-    ;
-    ]]>
+	<![CDATA[
+	$(document).ready(function() {
+		$("#jqctAccordion-]]>{data.uid}<![CDATA[").accordion({
+					active : ]]>{settings.showfirst}<![CDATA[,
+				animated
+		:
+		false,
+				autoHeight
+		:
+		false,
+				header
+		:
+		'div.header'
+	});
+	})
+	;
+	]]>
 </script>
 
 <div id="jqctAccordion-{data.uid}">
-    <f:for each="{content}" as="ce" key="key">
-        <div id="jqctAccordionContent-{data.uid}-{key}">
-            <div class="header">{ce.header}</div>
-            <div>
-                <f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
-            </div>
-        </div>
-    </f:for>
+	<f:for each="{content}" as="ce" key="key">
+		<div id="jqctAccordionContent-{data.uid}-{key}">
+			<div class="header">{ce.header}</div>
+			<div>
+				<f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
+			</div>
+		</div>
+	</f:for>
 </div>

@@ -1,34 +1,34 @@
 <script type="text/javascript">
-    <![CDATA[
-    $(document).ready(function() {
-        $("#jqctTab-]]>{data.uid}<![CDATA[ > ul > li > a").each(function() {
-            $this = $(this);
-            href = $this.attr("href");
-            arr = href.split("#")
-            if (arr[1])
-                $this.attr("href", "#" + arr[1]);
-        });
-        $("#jqctTab-]]>{data.uid}<![CDATA[").tabs({
-            selected : ]]>{settings.showfirst}
-        <![CDATA[
-    });
-    })
-    ;
-    ]]>
+	<![CDATA[
+	$(document).ready(function() {
+		$("#jqctTab-]]>{data.uid}<![CDATA[ > ul > li > a").each(function() {
+			$this = $(this);
+			href = $this.attr("href");
+			arr = href.split("#")
+			if (arr[1])
+				$this.attr("href", "#" + arr[1]);
+		});
+		$("#jqctTab-]]>{data.uid}<![CDATA[").tabs({
+			selected : ]]>{settings.showfirst}
+		<![CDATA[
+	});
+	})
+	;
+	]]>
 </script>
 
 <div id="jqctTab-{data.uid}">
-    <ul>
-        <f:for each="{content}" as="ce" key="key">
-            <li>
-                <a id="jqctTabLink-{data.uid}-{key}" class="elTab-{data.uid}-href"
-                   href="index.php#jqctTabContent-{data.uid}-{key}">{ce.header}</a>
-            </li>
-        </f:for>
-    </ul>
-    <f:for each="{content}" as="ce" key="key">
-        <div id="jqctTabContent-{data.uid}-{key}">
-            <f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
-        </div>
-    </f:for>
+	<ul>
+		<f:for each="{content}" as="ce" key="key">
+			<li>
+				<a id="jqctTabLink-{data.uid}-{key}" class="elTab-{data.uid}-href"
+				   href="index.php#jqctTabContent-{data.uid}-{key}">{ce.header}</a>
+			</li>
+		</f:for>
+	</ul>
+	<f:for each="{content}" as="ce" key="key">
+		<div id="jqctTabContent-{data.uid}-{key}">
+			<f:format.html parseFuncTSPath="">{ce.content}</f:format.html>
+		</div>
+	</f:for>
 </div>
