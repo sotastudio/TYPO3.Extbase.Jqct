@@ -45,7 +45,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 * Kinda constructor
 	 * Beeing executed right after __construct and has access to injected Objects
 	 *
-	 * @return void
+	 * @return mixed
 	 */
 	public function initializeObject()
 	{
@@ -55,6 +55,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 
 		if ($this->hasRecords()) {
 			$this->persistElements()->processMergingAndOverride();
+			return TRUE;
 		} else {
 			return NULL;
 		}
@@ -64,16 +65,17 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 * Preserves the referenced Content Elements defined in the Flexform
 	 *
 	 * @todo Build query by an Extbase Query Factory
-	 * @return void
+	 * @return Tx_Jqct_Domain_Model_Content Reference to this Object for chaining
 	 */
 	final protected function persistElements()
 	{
 		$records = $this->getRecords();
 
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,header', // SELECT
-													  'tt_content', // FROM
-													  'uid IN (' . $records . ') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid, //WHERE
-													  'FIND_IN_SET (uid, "' . $records . '")' // ORDER BY
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'uid,header', // SELECT
+			'tt_content', // FROM
+		  	'uid IN (' . $records . ') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid, //WHERE
+		  	'FIND_IN_SET (uid, "' . $records . '")' // ORDER BY
 		);
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -82,11 +84,10 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		return $this;
 	}
 
-	/**<
+	/**
 	 * Processes the given Element Merging and Header Override
 	 *
-	 * @param string $procElementMerging Directives of Element Merging
-	 * @param string $
+	 * @return void
 	 */
 	public function processMergingAndOverride()
 	{
@@ -114,17 +115,19 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	final public function getHeaderByUid($uid)
 	{
+		$o = NULL;
 		foreach (array_keys($this->content) as $ak) {
 			$v = &$this->content[$ak];
 			if ($v['uid'] == $uid)
-				return $v['header'];
+				$o = $v['header'];
 		}
+		return $o;
 	}
 
 	/**
 	 * Returns the Header of a Content Element by its array index
 	 *
-	 * @param string $uid Uid of the Content Element
+	 * @param string $index Uid of the Content Element
 	 * @return string Header of the Content Element
 	 */
 	final public function getHeaderByIndex($index)
@@ -155,17 +158,19 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	final public function getContentByUid($uid)
 	{
+		$o = NULL;
 		foreach (array_keys($this->content) as $ak) {
 			$v = &$this->content[$ak];
 			if ($v['uid'] == $uid)
-				return $v['content'];
+				$o = $v['content'];
 		}
+		return $o;
 	}
 
 	/**
 	 * Returns the Content of a Content Element by its array index
 	 *
-	 * @param string $uid Uid of the Content Element
+	 * @param string $index Uid of the Content Element
 	 * @return string Content of the Content Element
 	 */
 	final public function getContentByIndex($index)
@@ -191,6 +196,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	/**
 	 * Sets the list of Content Elements referenced in the Frontend Plugin
 	 *
+	 * @param string $records List of records
 	 * @return Tx_Jqct_Domain_Model_Content Reference to this Object for chaining
 	 */
 	final protected function setRecords($records)
@@ -222,7 +228,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	/**
 	 * Returns a Configuration Array for requesting Content Elements
 	 *
-	 * @param string Uid(s) of the requested Content Element(s)
+	 * @param string $uid of the requested Content Element(s)
 	 * @return array Configuration Array
 	 */
 	final protected function getConfByUid($uid)
@@ -230,6 +236,12 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		return array('tables' => 'tt_content', 'source' => $uid, 'dontCheckPid' => 1,);
 	}
 
+	/**
+	 * Return the desired Plugin configuration directive based on the given key
+	 *
+	 * @param string $key Key of the desired Plugin configuration directive
+	 * @return mixed
+	 */
 	final protected function getSetting($key)
 	{
 		$val =& $this->pluginConfiguration[$key];
