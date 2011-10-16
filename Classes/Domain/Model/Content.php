@@ -8,6 +8,7 @@
  * @subpackage tx_jqct
  * @property mixed content
  * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)
+ * @todo Move Tab Merging and Header Override into the Content Element Model - currently it seems like the Plugin configuration is a bit buggy in there
  */
 class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject
 {
@@ -31,6 +32,11 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 * @var string
 	 */
 	protected $records;
+	
+	/**
+	 * @var array
+	 */
+	public $content;
 
 	/**
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $conf
@@ -91,10 +97,62 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	public function processMergingAndOverride()
 	{
-		list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
+		list($procElementMerging, $procHeaderOverride) = array($this->getSetting('elementMerging'), $this->getSetting('headerOverride'));
 
-		if ($procHeaderOverride || $procElementMerging) {
+		if ($procElementMerging || $procHeaderOverride) {
+			
+			list($mergeArr, $overrideArr) = array(
+				t3lib_div::trimExplode('|', $procElementMerging, TRUE), 
+				t3lib_div::trimExplode("\n", $procHeaderOverride, TRUE)
+			);
+					
+			// Process Merging
+			if (count($mergeArr) > 1) {
+				list($mergedElements, $mergeLength, $pos) = array(array(), 0, 0);
+				
+				foreach (array_keys($mergeArr) as $ak) {
+					$mergeLength = intval($mergeArr[$ak]);
+					
+					$element = array_slice($this->content, $pos, $mergeLength); // Get given amount of Contents
+					$mergedElements[] = (count($element) > 1) ? $this->getMergedElement($element) : $element[0]; // Persist
+					$pos += $mergeLength;
+				}
+				
+				$this->content = $mergedElements;
+				unset($mergeArr, $ak, $mergedElements, $mergeLength, $pos, $element);
+			}
+			
+			// Process Header Override
+			if (count($overrideArr)) {
+				$pos = 0;
+				
+				foreach (array_keys($overrideArr) as $ak) {
+					$header = $overrideArr[$ak];
+					$this->content[$pos]['header'] = $header;
+					$pos++;
+				}
+				unset($overrideArr, $ak, $header, $pos);
+			}
 		}
+	}
+
+	/**
+	 * Merges an array of given elements
+	 * 
+	 * @param array $els Array of the elements to merge
+	 * @return array Merged elements
+	 */
+	protected function getMergedElement($els) {
+		$mergedEl = array('uid' => '', 'header' => '', 'content' => '');
+		foreach (array_keys($els) as $ak) {
+			$el = &$els[$ak];
+			
+			$mergedEl['uid'] .= (reset($els) !== $el) ? ',' . $el['uid'] : $el['uid'];
+			$mergedEl['header'] = $el['header'];
+			$mergedEl['content'] .= $el['content'];
+			
+		}
+		return $mergedEl;
 	}
 
 	/**
