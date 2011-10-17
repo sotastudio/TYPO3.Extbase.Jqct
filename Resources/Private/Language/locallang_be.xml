@@ -11,8 +11,8 @@
 			<!-- Flexforms -->
 			<label index="flexforms_tab.settings">Settings</label>
 			<label index="flexforms_settings.renderingMethod">Rendering Method</label>
-			<label index="flexforms_settings.renderingMethod.1">Tab Element</label>
-			<label index="flexforms_settings.renderingMethod.2">Accordion Element</label>
+			<label index="flexforms_settings.renderingMethod.tabs">Tab Element</label>
+			<label index="flexforms_settings.renderingMethod.accordion">Accordion Element</label>
 			<label index="flexforms_settings.records">Records</label>
 			<label index="flexforms_settings.headerOverride">Override Element Headline</label>
 			<label index="flexforms_settings.elementMerging">Merge Content Elements</label>
@@ -25,8 +25,8 @@
 			<!-- Flexforms -->
 			<label index="flexforms_tab.settings">Einstellungen</label>
 			<label index="flexforms_settings.renderingMethod">Rendering-Methode</label>
-			<label index="flexforms_settings.renderingMethod.1">Tab-Element</label>
-			<label index="flexforms_settings.renderingMethod.2">Accordion-Element</label>
+			<label index="flexforms_settings.renderingMethod.tabs">Tab-Element</label>
+			<label index="flexforms_settings.renderingMethod.accordion">Accordion-Element</label>
 			<label index="flexforms_settings.records">Inhaltselemente</label>
 			<label index="flexforms_settings.headerOverride">Element-Header überschreiben</label>
 			<label index="flexforms_settings.elementMerging">Inhaltselemente zu einem Element verschmelzen</label>

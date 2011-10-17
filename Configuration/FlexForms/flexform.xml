@@ -1,4 +1,7 @@
 <T3DataStructure>
+	<meta type="array">
+		<langDisable>1</langDisable>
+	</meta>
 	<sheets>
 		<sDEF>
 			<ROOT>
@@ -23,15 +26,11 @@
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">
-											LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.1
-										</numIndex>
+										<numIndex index="0">LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.tabs</numIndex>
 										<numIndex index="1">Tabs</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">
-											LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.2
-										</numIndex>
+										<numIndex index="0">LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.renderingMethod.accordion</numIndex>
 										<numIndex index="1">Accordion</numIndex>
 									</numIndex>
 								</items>
@@ -84,7 +83,7 @@
 						</TCEforms>
 					</settings.elementMerging>
 
-					<settings.ajax>
+					<!--<settings.ajax>
 						<TCEforms>
 							<label>LLL:EXT:jqct/Resources/Private/Language/locallang_be.xml:flexforms_settings.ajax
 							</label>
@@ -93,7 +92,7 @@
 								<default>0</default>
 							</config>
 						</TCEforms>
-					</settings.ajax>
+					</settings.ajax>-->
 
 					<settings.showfirst>
 						<TCEforms>
