@@ -9,6 +9,7 @@
  * @property mixed content
  * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)
  * @todo Move Tab Merging and Header Override into the Content Element Model - currently it seems like the Plugin configuration is a bit buggy in there
+ * @todo Revise Content Model Methods to get an Element by ID - this wont work with merged elements right nox
  */
 class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject
 {
@@ -58,11 +59,12 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 		$this->contentObject = $this->configurationManager->getContentObject();
 		$this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
 		$this->setRecords($this->getSetting('records'));
-
+				
 		if ($this->hasRecords()) {
 			$this->persistElements()->processMergingAndOverride();
 			return TRUE;
 		} else {
+			echo "Debug-Output: Hasn't any Records!";
 			return NULL;
 		}
 	}
@@ -75,18 +77,45 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	final protected function persistElements()
 	{
+		/*		
 		$records = $this->getRecords();
-
+		
+		$GLOBALS['TYPO3_DB']->debugOutput = TRUE;
+		
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid,header', // SELECT
 			'tt_content', // FROM
-		  	'uid IN (' . $records . ') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid, //WHERE
-		  	'FIND_IN_SET (uid, "' . $records . '")' // ORDER BY
+	  	'uid IN (' . $records . ') AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid, //WHERE
+	  	'FIND_IN_SET (uid, "' . $records . '")' // ORDER BY
 		);
+		echo '---' . $GLOBALS['TYPO3_DB']->debug_lastBuiltQuery . '---';
+
+		t3lib_utility_Debug::debug($res);
+
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$this->content[] = array('uid' => $row['uid'], 'header' => $row['header'], 'content' => $this->contentObject->RECORDS($this->getConfByUid($row['uid'])));
+		}*/
+		
+		$recordList = t3lib_div::trimExplode(',', $this->getRecords());
+		
+		foreach (array_keys($recordList) as $ak) {
+			$recId = intval($recordList[$ak]);
+			
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'uid,header', // SELECT
+				'tt_content', // FROM
+		  	'uid = ' . $recId . ' AND deleted = 0 AND hidden = 0 AND sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid //WHERE
+			);
+			$rec = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+			
+			$this->content[] = array(
+				'uid' => $rec['uid'], 
+				'header' => $rec['header'], 
+				'content' => $this->contentObject->RECORDS($this->getConfByUid($rec['uid']))
+			);
 		}
+		
 		return $this;
 	}
 
@@ -291,7 +320,11 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	 */
 	final protected function getConfByUid($uid)
 	{
-		return array('tables' => 'tt_content', 'source' => $uid, 'dontCheckPid' => 1,);
+		return array(
+			'tables' => 'tt_content', 
+			'source' => $uid, 
+			'dontCheckPid' => 1,
+		);
 	}
 
 	/**
