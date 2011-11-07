@@ -9,11 +9,10 @@
 				$this.attr("href", "#" + arr[1]);
 		});
 		$("#jqctTab-]]>{data.uid}<![CDATA[").tabs({
-			selected : ]]>{settings.showfirst}
-		<![CDATA[
+			selected: ]]><f:if condition="{settings.showfirst} > 0"><f:then>{settings.showfirst}-1</f:then><f:else>0</f:else></f:if><![CDATA[, 
+		});
+
 	});
-	})
-	;
 	]]>
 </script>
 
