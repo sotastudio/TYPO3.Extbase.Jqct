@@ -2,19 +2,14 @@
 	<![CDATA[
 	$(document).ready(function() {
 		$("#jqctAccordion-]]>{data.uid}<![CDATA[").accordion({
-					active : ]]>{settings.showfirst}<![CDATA[,
-				animated
-		:
-		false,
-				autoHeight
-		:
-		false,
-				header
-		:
-		'div.header'
+			]]>
+			active: <f:if condition="{settings.showfirst} > 0"><f:then>{settings.showfirst}-1</f:then><f:else>false</f:else></f:if>, 
+			<![CDATA[
+			animated: false,
+			autoHeight: false,
+			header: 'div.header'
+		});
 	});
-	})
-	;
 	]]>
 </script>
 
