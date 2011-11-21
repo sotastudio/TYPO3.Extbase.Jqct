@@ -1,6 +1,6 @@
 The jQuery Content Tools Extension is planed to become a Framework for many different Content Element Tools, like jQuery UI Elements, Slideshows and much more.
 
-JQCT is being developed and maintained by Andy Hausmann <andy.hausmann@gmx.de>.
+JQCT is being developed and maintained by Andy Hausmann <andy.hausmann@gmx.de> under the License mentioned in the LICENSE file.
 Currently, this extension is in an early alpha state and unter heavy development.
 
 When it reaches a notable and functional state of development, it will be uploaded into TER.

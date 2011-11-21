@@ -6,12 +6,11 @@
  * @author Andy Hausmann <andy.hausmann@gmx.de>
  * @package TYPO3
  * @subpackage tx_jqct
- * @property mixed content
  * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)
  * @todo Move Tab Merging and Header Override into the Content Element Model - currently it seems like the Plugin configuration is a bit buggy in there
  * @todo Revise Content Model Methods to get an Element by ID - this wont work with merged elements right nox
  */
-class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValueObject
+class Tx_Jqct_Domain_Model_Resource_Content extends Tx_Extbase_DomainObject_AbstractValueObject
 {
 
 	/**
@@ -35,7 +34,7 @@ class Tx_Jqct_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractValue
 	protected $records;
 	
 	/**
-	 * @var array
+	 * @var mixed
 	 */
 	public $content;
 

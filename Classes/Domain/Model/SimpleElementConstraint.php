@@ -29,7 +29,7 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
 	/**
 	 * Content
 	 *
-	 * @var Tx_Jqct_Domain_Model_Content
+	 * @var Tx_Jqct_Domain_Model_Resource_Content
 	 */
 	public $content;
 
@@ -43,19 +43,10 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
 	}
 
 	/**
-	 * @param array $settings
-	 * @return void
-	 */
-	public function setPluginConfiguration(array &$settings)
-	{
-		$this->pluginConfiguration =& $settings;
-	}
-
-	/**
 	 * @param Tx_Jqct_Domain_Model_Content $content
 	 * @return void
 	 */
-	public function injectContent(Tx_Jqct_Domain_Model_Content $content)
+	public function injectContent(Tx_Jqct_Domain_Model_Resource_Content $content)
 	{
 		$this->content = $content;
 	}
@@ -69,14 +60,6 @@ abstract class Tx_Jqct_Domain_Model_SimpleElementConstraint extends Tx_Extbase_D
 	public function initializeObject()
 	{
 		$this->pluginConfiguration = $this->configurationManager->getConfiguration('Settings');
-
-		/*
-	  list($procHeaderOverride, $procElementMerging) = array($this->getSetting('headerOverride'), $this->getSetting('elementMerging'));
-
-	  if ($procHeaderOverride || $procElementMerging) {
-		  $this->content->processMergingAndOverride($procHeaderOverride, $procElementMerging);
-	  }
-			  */
 
 		//t3lib_utility_Debug::debug($this->pluginConfiguration);
 
