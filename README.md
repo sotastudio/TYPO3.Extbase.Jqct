@@ -18,4 +18,4 @@ Include the Static Extension Template and check the Extension.
 ## Enhancements, ideas and bug reporting
 
 Please help me improving this Extension. Don't hesitate to contact me or let me know about issues.
-Visit the issues section at Github to get an overview about already opened bugs and feature requests.
+Visit the issues section on Github to get an overview about already opened bugs and feature requests.
