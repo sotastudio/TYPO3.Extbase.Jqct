@@ -12,7 +12,7 @@ Clone/download this archive into your project
 
 Move the package contents (jqct/) to TYPO3's Extension directory: typo3conf/ext/ and install the Extension through the Extension Manager.
 
-Currently there is no documentation available, but i promise: i'll write one sonn. In the meanwhile you should check jqct/Configuration/TypoScript/ to get a clue about the available options.
+Currently there is no documentation available, but i promise: i'll write one soon. In the meanwhile you should check jqct/Configuration/TypoScript/ to get a clue about the available options.
 Include the Static Extension Template and check the Extension.
 
 ## Enhancements, ideas and bug reporting
