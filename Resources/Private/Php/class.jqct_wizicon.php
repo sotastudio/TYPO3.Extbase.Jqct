@@ -57,7 +57,7 @@ class jqct_pi1_wizicon
 
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Resources/Private/Php/class.jqct_wizicon.php']) {
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/jqct/Resources/Private/Php/class.jqct_wizicon.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/jqct/Resources/Private/Php/class.jqct_wizicon.php']);
 }
 ?>
