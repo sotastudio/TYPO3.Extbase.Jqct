@@ -74,7 +74,7 @@ class Tx_Jqct_Domain_Model_Resource_Content extends Tx_Extbase_DomainObject_Abst
 	 * @todo Build query by an Extbase Query Factory
 	 * @return Tx_Jqct_Domain_Model_Content Reference to this Object for chaining
 	 */
-	final protected function persistElements()
+	protected function persistElements()
 	{
 		/*		
 		$records = $this->getRecords();
@@ -133,9 +133,9 @@ class Tx_Jqct_Domain_Model_Resource_Content extends Tx_Extbase_DomainObject_Abst
 				t3lib_div::trimExplode('|', $procElementMerging, TRUE), 
 				t3lib_div::trimExplode("\n", $procHeaderOverride, TRUE)
 			);
-					
+
 			// Process Merging
-			if (count($mergeArr) > 1) {
+			if (count($mergeArr) > 0) {
 				list($mergedElements, $mergeLength, $pos) = array(array(), 0, 0);
 				
 				foreach (array_keys($mergeArr) as $ak) {
