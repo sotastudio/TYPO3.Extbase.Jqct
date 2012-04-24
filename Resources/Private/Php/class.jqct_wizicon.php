@@ -44,15 +44,15 @@ class jqct_pi1_wizicon
 
 
 	/**
-	 * Reads the [extDir]/locallang.xml and returns the $LOCAL_LANG array found in that file.
+	 * Reads the Backend Localization file.
 	 *
 	 * @return	The array with language labels
 	 */
 	protected function includeLocalLang()
 	{
+		$l10nParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
 		$llFile = t3lib_extMgm::extPath($this->extKey) . 'Resources/Private/Language/locallang_be.xml';
-
-		return t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+		return  $l10nParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
 	}
 
 }
