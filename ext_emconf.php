@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'jQuery Content Tools (e.g. Tabs and Accordion) based on jQuery UI.',
 	'category' => 'fe',
 	'author' => 'Andy Hausmann',
-	'author_email' => 'andy.hausmann@gmx.de',
+	'author_email' => 'hi@andy-hausmann.de',
 	'author_company' => '',
 	'dependencies' => 'extbase,fluid',
 	'clearcacheonload' => 1,
@@ -23,7 +23,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '1.0.1',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '4.4-4.6',
+			'typo3' => '4.4-4.7',
 			'extbase' => '1.0.0-0.0.0',
 			'fluid' => '1.0.0-0.0.0',
 		),
