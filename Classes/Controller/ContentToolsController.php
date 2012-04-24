@@ -58,10 +58,7 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 			if ($tpl = $this->getTemplate($this->getRenderingMethod())) {
 				$this->overrideView($tpl);
 			}
-			// Process Files
-			//$excludeJQuery = ($this->div->checkForT3jquery()) ? TRUE : FALSE;
-			//$this->div->processCssJs($this->settings['files'], $excludeJQuery, $this->settings['moveJsToFooter']);
-			// If everything went fine, just render the stuff
+
 			$tplObj = array(
 				'data' => $this->contentObject->data,
 				'content' => $this->renderingModel->content->getAll(),

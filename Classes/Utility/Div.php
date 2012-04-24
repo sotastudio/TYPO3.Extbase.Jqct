@@ -1,44 +1,44 @@
 <?php
+
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2012 Andy Hausmann <hi@andy-hausmann.de>
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 /**
  * Helper Class which makes various tools and helper available
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
- * @package TYPO3
- * @subpackage tx_jqct
+ * @author Andy Hausmann <hi@andy-hausmann.de>
+ * @package jqct
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Jqct_Utility_Div
 {
 
 	/**
-	 * Helper function to debug - for those whom too lazy to write to much code, as i am.
-	 *
-	 * @param	 mixed  $v: Var to debug.
-	 * @return	void
-	 */
-	public function debug($v)
-	{
-		t3lib_utility_Debug::debug($v);
-	}
-
-	public function getClassName($obj)
-	{
-		return get_class($obj);
-	}
-
-	public function getClassMethods($obj)
-	{
-		return get_class_methods($obj);
-	}
-
-	public function getClassVars($obj)
-	{
-		return get_object_vars($obj);
-	}
-
-	/**
 	 * Returns the reference to a 'resource' in TypoScript.
 	 *
-	 * @todo Check whether there is a better solution for this
+	 * @param string $file File get a reference from - can contain EXT:ext_name
+	 * @return mixed
 	 */
 	public function getFileResource($file)
 	{
@@ -48,7 +48,7 @@ class Tx_Jqct_Utility_Div
 	/**
 	 * Checks a passed CSS or JS file and renders it with the Page Content
 	 *
-	 * @todo Make it more flexible so it can handle an array
+	 * @deprecated
 	 * @param  string  $file: Given filename incl. path
 	 * @param  bool  $moveJSToFooter
 	 * @return  void
@@ -71,7 +71,7 @@ class Tx_Jqct_Utility_Div
 	/**
 	 * Checks and includes CSS and JS files
 	 *
-	 * @todo Work out
+	 * @deprecated
 	 * @return  void
 	 */
 	public function processCssJs($files, $moveJsToFooter = FALSE, $excludeJQuery = true)
@@ -91,6 +91,7 @@ class Tx_Jqct_Utility_Div
 	/**
 	 * Check whether t3jquery is available and accessible
 	 *
+	 * @deprecated
 	 * @return boolean Result of the T3 jQuery check
 	 */
 	public function checkForT3jquery()
@@ -107,4 +108,66 @@ class Tx_Jqct_Utility_Div
 			return FALSE;
 		}
 	}
+
+	/**
+	 * Checks a passed CSS or JS file and adds it to the Frontend.
+	 *
+	 * @param string $file File reference
+	 * @param string $addUnique Unique key to avoid multiple inclusions
+	 * @param bool $moveToFooter Flag to include file into footer - doesn't work for CSS files
+	 */
+	public static function addCssJsFile($file, $addUnique = NULL, $moveToFooter = FALSE)
+	{
+		// Get file extension (after last occurance of a dot)
+		$mediaTypeSplit = strrchr($file, '.');
+		// Get file reference
+		$resolved = self::getFileResource($file);
+
+		if ($resolved) {
+			// JavaScript processing
+			if ($mediaTypeSplit == '.js') {
+				if ($addUnique) {
+					$code = '<script src="' . $resolved . '" type="text/javascript"></script>';
+					($moveToFooter)
+						? $GLOBALS['TSFE']->additionalFooterData[$addUnique] = $code
+						: $GLOBALS['TSFE']->additionalHeaderData[$addUnique] = $code;
+
+				} else {
+					($moveToFooter)
+						? $GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($resolved)
+						: $GLOBALS['TSFE']->getPageRenderer()->addJsFile($resolved);
+				}
+
+			// Stylesheet processing
+			} elseif ($mediaTypeSplit == '.css') {
+				if ($addUnique) {
+					$GLOBALS['TSFE']->additionalHeaderData[$addUnique] =
+						'<link href="' . $resolved . '" rel="stylesheet" type="text/css" media="all" />';
+
+				} else {
+					$GLOBALS['TSFE']->getPageRenderer()->addCssFile($resolved);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Adds/renders a Flash message.
+	 *
+	 * @param string $title The title
+	 * @param string $message The message
+	 * @param int $type Message level
+	 * @return mixed
+	 */
+	public static function renderFlashMessage($title, $message, $type = t3lib_FlashMessage::WARNING) {
+		$code  = ".typo3-message .message-header{padding: 10px 10px 0 30px;font-size:0.9em;}";
+		$code .= ".typo3-message .message-body{padding: 10px;font-size:0.9em;}";
+
+		$GLOBALS['TSFE']->getPageRenderer()->addCssFile(t3lib_extMgm::siteRelPath('t3skin') . 'stylesheets/visual/element_message.css');
+		$GLOBALS['TSFE']->getPageRenderer()->addCssInlineBlock('flashmessage',$code);
+
+		$flashMessage = t3lib_div::makeInstance('t3lib_FlashMessage', $message, $title, $type);
+		return $flashMessage->render();
+	}
+
 }

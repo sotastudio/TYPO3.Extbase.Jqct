@@ -7,4 +7,16 @@ plugin.tx_jqct {
 		# cat=plugin.tx_jqct/file; type=string; label=Path to template layouts (FE)
 		layoutRootPath = EXT:jqct/Resources/Private/Layouts/
 	}
+	settings {
+		# String: File reference to the Jqct's Css file - empty this value if you want to include this at your own
+		css = EXT:jqct/Resources/Public/Css/common.css
+ 		lib {
+ 			# String: File reference to alternative jQuery library if EXT t3jquery is not in use
+ 			jQuery = EXT:jqct/Resources/Public/Js/jquery.min.js
+ 			# String: File reference to alternative jQuery UI library if EXT t3jquery is not in use
+ 			jQueryUI = EXT:jqct/Resources/Public/Js/jquery-ui.min.js
+ 			# Bool: Flag to define whether the script shoul be moved to the footer or not
+ 			moveToFooter = 0
+ 		}
+	}
 }
