@@ -4,18 +4,37 @@
 
 The jQuery Content Tools Extension is planed to become a Framework for many different Content Element Tools, like jQuery UI Elements, Slideshows and much more.
 
-## How to use it
+## Installation
 
-Clone/download this archive into your project
+### Via Git
 
-	git clone git@github.com:andyhausmann/jqct.git
+Clone into typo3conf/ext/
 
-Move the package contents (jqct/) to TYPO3's Extension directory: typo3conf/ext/ and install the Extension through the Extension Manager.
+	git clone git@github.com:andyhausmann/jqct.git /path/to/project/typo3conf/ext/jqct/
+	
+Install by Extension Manager as usual.
 
-Currently there is no documentation available, but i promise: i'll write one soon. In the meanwhile you should check jqct/Configuration/TypoScript/ to get a clue about the available options.
-Include the Static Extension Template and check the Extension.
 
-## Enhancements, ideas and bug reporting
+### Via TER
 
-Please help me improving this Extension. Don't hesitate to contact me or let me know about issues.
-Visit the issues section on Github to get an overview about already opened bugs and feature requests.
+[Jump to TER](http://typo3.org/extensions/repository/view/jqct)
+
+
+## Configuration
+
+* Include **static Extension Template**
+* Create **Frontend plugin**
+	* Adjust the **Plugin Settings** to your needs
+* Check the Frontend!
+
+
+## Roadmap and Tasks
+
+Plase take a look at the Github Issue Tracker for this projekt.
+
+
+## Contribute
+
+If you have ideas, feature or bug requests, don't hesitate and report them at the Issue Tracker.
+
+Feel also free to fork and pull.
