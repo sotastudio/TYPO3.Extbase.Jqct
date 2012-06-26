@@ -85,7 +85,7 @@ class Tx_Jqct_Controller_ContentToolsController extends Tx_Jqct_Controller_Abstr
 	/**
 	 * Checks whether a differing template file has been specified via TS Setup
 	 *
-	 * @param strin $rendering The Rendering Method
+	 * @param string $rendering The Rendering Method
 	 * @return mixed Template reference or a negative result
 	 */
 	protected function getTemplate($rendering)
