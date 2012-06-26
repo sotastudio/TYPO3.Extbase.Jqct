@@ -10,13 +10,25 @@
 			<label index="header.settingsPlugin">Plugin Settings</label>
 			<label index="flashmessage.ContentTools.rendering">Rendering not defined.</label>
 			<label index="flashmessage.ContentTools.renderingModel">Invalid Rendering defined.</label>
-			<label index="flashmessage.ContentTools.templateNotDeclared">There's no template declared, matching the
-				current Rendering Model.
+			<label index="flashmessage.ContentTools.templateNotDeclared">There's no template declared, matching the current Rendering Model.
 			</label>
 			<!-- Common -->
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="header.settingsPlugin">Plugin-Einstellungen</label>
+			<label index="flashmessage.ContentTools.rendering">Kein Rendering definiert.</label>
+			<label index="flashmessage.ContentTools.renderingModel">Ungültiges Rendering definiert.</label>
+			<label index="flashmessage.ContentTools.templateNotDeclared">Für das gewählte Rendering-Model scheint kein Template vorhanden zu sein.
+			</label>
+			<!-- Common -->
+		</languageKey>
+		<languageKey index="pl" type="array">
+			<!-- For testing purposes -->
+			<label index="header.settingsPlugin">Ustawienia wtyczki</label>
+			<label index="flashmessage.ContentTools.rendering">Rendering nie jest zdefiniowany.</label>
+			<label index="flashmessage.ContentTools.renderingModel">Niedozwolony Rendering zdefiniowano.</label>
+			<label index="flashmessage.ContentTools.templateNotDeclared">Nie deklarowano szablon, który należy do ob ecnego modelu Rendering.</label>
+			<!-- Common -->
 		</languageKey>
 	</data>
 </T3locallang>

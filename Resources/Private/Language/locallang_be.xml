@@ -33,5 +33,19 @@
 			<label index="flexforms_settings.ajax">Ajax verwenden</label>
 			<label index="flexforms_settings.showfirst">Zeige # zuerst</label>
 		</languageKey>
+		<languageKey index="pl" type="array">
+			<label index="pi1_title">jQuery Content Tools</label>
+			<label index="pi1_plus_wiz_description">CE-Tools bazujące na jQuery UI</label>
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Ustawienia</label>
+			<label index="flexforms_settings.renderingMethod">Metoda Rendering</label>
+			<label index="flexforms_settings.renderingMethod.tabs">Tab-Element</label>
+			<label index="flexforms_settings.renderingMethod.accordion">Accordion-Element</label>
+			<label index="flexforms_settings.records">Element z treścią</label>
+			<label index="flexforms_settings.headerOverride">Zastąpienie nagłówków elementów</label>
+			<label index="flexforms_settings.elementMerging">Elementy z treścią połączyć w jeden element</label>
+			<label index="flexforms_settings.ajax">Używać Ajax</label>
+			<label index="flexforms_settings.showfirst">Pokaż # jako pierwszy</label>
+		</languageKey>
 	</data>
 </T3locallang>

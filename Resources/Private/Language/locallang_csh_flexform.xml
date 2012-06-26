@@ -12,5 +12,8 @@
 		<languageKey index="de" type="array">
 			<label index="settings.renderingMethod">Hier eine Rendering-Methode für das Frontend auswählen</label>
 		</languageKey>
+		<languageKey index="pl" type="array">
+			<label index="settings.renderingMethod">Tu wybierać metodę Rendering dla Frontend</label>
+		</languageKey>
 	</data>
 </T3locallang>
