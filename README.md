@@ -10,9 +10,9 @@ The jQuery Content Tools Extension is planed to become a Framework for many diff
 
 Clone into typo3conf/ext/
 
-	git clone git@github.com:andyhausmann/jqct.git /path/to/project/typo3conf/ext/jqct/
+	git clone git@bitbucket.org:sotastudio/typo3.extbase.jqct.git /path/to/project/typo3conf/ext/jqct/
 	
-Install by Extension Manager as usual.
+Install via Extension Manager as usual.
 
 
 ### Via TER
