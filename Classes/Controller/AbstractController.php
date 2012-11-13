@@ -2,7 +2,7 @@
 /**
  * Abstract base controller for the Jqct extension
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @author Andy Hausmann <andy@sota-studio.de>
  * @package TYPO3
  * @subpackage tx_jqct
  * @todo Create Method to inject Stylesheets and Script info the Frontend Page: $this->response->addAdditionalHeaderData('<link rel="stylesheet" href="' . t3lib_extMgm::siteRelPath('extkey') . 'Resources/Public/Stylesheets/index.css" />');

@@ -2,7 +2,7 @@
 /**
  * The ContentTools controller for the Jqct extension
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @author Andy Hausmann <andy@sota-studio.de>
  * @package TYPO3
  * @subpackage tx_jqct
  * @todo Work out how to handle a missing rendering method

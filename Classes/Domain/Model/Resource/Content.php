@@ -3,7 +3,7 @@
  * Acts as a Repository for Content Elements
  * This Model/Repository is being referenced and used by Content Element Rendering-Classes
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @author Andy Hausmann <andy@sota-studio.de>
  * @package TYPO3
  * @subpackage tx_jqct
  * @todo Revise Content Model to provice access to data without violating the Uniform Access Principle (related to Fluid)

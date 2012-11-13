@@ -2,7 +2,7 @@
 /**
  * Helper Class to hook into the page rendering process
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @author Andy Hausmann <andy@sota-studio.de>
  * @package TYPO3
  * @subpackage tx_jqct
  */

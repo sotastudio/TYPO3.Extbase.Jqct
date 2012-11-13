@@ -2,7 +2,7 @@
 /**
  * Class that adds the wizard icon.
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @author Andy Hausmann <andy@sota-studio.de>
  * @package TYPO3
  * @subpackage tx_jqct
  */
@@ -25,8 +25,8 @@ class jqct_pi1_wizicon
 	/**
 	 * Processing the wizard items array
 	 *
-	 * @param	array	$wizardItems: The wizard items
-	 * @return	Modified array with wizard items
+	 * @param array $wizardItems: The wizard items
+	 * @return array Modified array with wizard items
 	 */
 	public function proc($wizardItems)
 	{
