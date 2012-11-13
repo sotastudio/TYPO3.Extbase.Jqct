@@ -4,7 +4,7 @@ require_once(t3lib_extmgm::extPath('jqct') . 'Tests/BaseTestCase.php');
 /**
  * Test Case for the Main Controller
  *
- * @author Andy Hausmann <andy.hausmann@gmx.de>
+ * @author Andy Hausmann <andy@sota-studio.de>
  * @package TYPO3
  * @subpackage tx_jqct
  */
